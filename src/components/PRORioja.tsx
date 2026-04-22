@@ -97,11 +97,11 @@ export default function PRORioja() {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
-            <img src={logo} alt="Logo PRO La Rioja" width={44} height={44} className="w-11 h-11" />
-            <div className="leading-tight">
-              <div className="font-extrabold tracking-tight text-lg">PRO</div>
-              <div className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">
-                La Rioja
+            <img src={logo} alt="Logo PRO" width={72} height={58} className="h-12 w-auto" />
+            <div className="leading-tight border-l border-border pl-3">
+              <div className="font-extrabold tracking-tight text-sm">La Rioja</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                Propuesta Republicana
               </div>
             </div>
           </a>
@@ -413,9 +413,9 @@ export default function PRORioja() {
         <div className="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <img src={logo} alt="" width={44} height={44} className="w-11 h-11" />
-              <div>
-                <div className="font-extrabold text-white">PRO La Rioja</div>
+              <img src={logo} alt="" width={72} height={58} className="h-12 w-auto" />
+              <div className="border-l border-white/20 pl-3">
+                <div className="font-extrabold text-white">La Rioja</div>
                 <div className="text-xs uppercase tracking-[0.2em] text-white/50">
                   Propuesta Republicana
                 </div>
