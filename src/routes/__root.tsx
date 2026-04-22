@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "PRO La Rioja — La Rioja que queremos, empieza hoy" },
+      {
+        name: "description",
+        content:
+          "PRO La Rioja: el espacio republicano que trabaja por una provincia con instituciones fuertes, trabajo y futuro. Sumate al cambio.",
+      },
+      { name: "author", content: "PRO La Rioja" },
+      { property: "og:title", content: "PRO La Rioja" },
+      { property: "og:description", content: "Trabajamos por la La Rioja del futuro." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@PROLaRioja" },
     ],
     links: [
       {
