@@ -172,10 +172,10 @@ export default function PRORioja() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 h-18 lg:h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 h-16 sm:h-18 lg:h-20 flex items-center justify-between">
           <button
             onClick={() => go("inicio")}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 sm:gap-3 group min-w-0"
             aria-label="PRO La Rioja - Inicio"
           >
             <img
@@ -183,7 +183,7 @@ export default function PRORioja() {
               alt="Logo PRO"
               width={72}
               height={58}
-              className="h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-9 sm:h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0"
             />
             <div
               className={`leading-tight border-l pl-3 hidden sm:block transition-colors ${
@@ -311,34 +311,34 @@ export default function PRORioja() {
           <div className="absolute left-0 right-0 top-1/2 h-px bg-white/5" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-5 lg:px-8 py-32 lg:py-40 w-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 py-28 sm:py-32 lg:py-40 w-full">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-3 mb-8 reveal">
-              <span className="h-[2px] w-10 bg-primary" />
-              <span className="text-xs font-bold tracking-[0.3em] uppercase text-primary">
+            <div className="inline-flex items-center gap-3 mb-6 sm:mb-8 reveal">
+              <span className="h-[2px] w-8 sm:w-10 bg-primary" />
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-primary">
                 PRO La Rioja
               </span>
             </div>
-            <h1 className="text-balance text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] reveal">
+            <h1 className="text-balance text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.02] sm:leading-[0.95] reveal">
               La Rioja que <span className="text-primary">queremos</span>,
-              <br />
-              empieza hoy.
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>empieza hoy.
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed reveal">
+            <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed reveal">
               Somos el espacio que cree en el cambio, en las instituciones y en una provincia con
               futuro. Trabajamos para que La Rioja vuelva a ser protagonista.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4 reveal">
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 reveal">
               <Button
                 onClick={() => go("afiliate")}
-                className="rounded-none h-14 px-8 font-bold text-base bg-primary text-primary-foreground hover:bg-primary/90 hover:translate-y-[-2px] transition-all duration-300"
+                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-primary text-primary-foreground hover:bg-primary/90 hover:translate-y-[-2px] transition-all duration-300 w-full sm:w-auto justify-center"
               >
-                Afiliate al PRO <ArrowRight className="ml-2 h-5 w-5" />
+                Afiliate al PRO <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <Button
                 onClick={() => go("propuestas")}
                 variant="outline"
-                className="rounded-none h-14 px-8 font-bold text-base bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground transition-all duration-300"
+                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 Conocé nuestras propuestas
               </Button>
@@ -358,38 +358,38 @@ export default function PRORioja() {
       </section>
 
       {/* PROPUESTAS */}
-      <section id="propuestas" className="py-24 lg:py-36 scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16 reveal">
+      <section id="propuestas" className="py-16 sm:py-24 lg:py-36 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+          <div className="flex items-end justify-between flex-wrap gap-6 mb-10 sm:mb-16 reveal">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="h-[2px] w-10 bg-primary" />
-                <span className="text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
+                <span className="h-[2px] w-8 sm:w-10 bg-primary" />
+                <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
                   Nuestras propuestas
                 </span>
               </div>
-              <h2 className="text-4xl md:text-6xl font-extrabold max-w-2xl text-balance">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold max-w-2xl text-balance">
                 Cuatro ejes para transformar la provincia.
               </h2>
             </div>
-            <p className="max-w-md text-muted-foreground text-lg">
+            <p className="max-w-md text-muted-foreground text-base sm:text-lg">
               Ideas concretas, equipos preparados y una visión de largo plazo para La Rioja.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
             {proposals.map((p, i) => (
               <article
                 key={p.n}
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="reveal hover-lift bg-secondary p-10 border border-border group cursor-default"
+                className="reveal hover-lift bg-secondary p-6 sm:p-10 border border-border group cursor-default"
               >
-                <div className="flex items-start justify-between mb-8">
-                  <span className="text-5xl font-extrabold text-muted-foreground/30">{p.n}</span>
-                  <PROMark className="h-7 w-auto text-primary transition-transform duration-500 group-hover:scale-110 group-hover:translate-x-1" />
+                <div className="flex items-start justify-between mb-6 sm:mb-8">
+                  <span className="text-4xl sm:text-5xl font-extrabold text-muted-foreground/30">{p.n}</span>
+                  <PROMark className="h-6 sm:h-7 w-auto text-primary transition-transform duration-500 group-hover:scale-110 group-hover:translate-x-1" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-extrabold mb-4">{p.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{p.text}</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-3 sm:mb-4">{p.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{p.text}</p>
               </article>
             ))}
           </div>
@@ -397,21 +397,21 @@ export default function PRORioja() {
       </section>
 
       {/* NOTICIAS */}
-      <section id="noticias" className="py-24 lg:py-36 bg-secondary scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8">
+      <section id="noticias" className="py-16 sm:py-24 lg:py-36 bg-secondary scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
           <div className="flex items-center gap-3 mb-4 reveal">
-            <span className="h-[2px] w-10 bg-primary" />
-            <span className="text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
+            <span className="h-[2px] w-8 sm:w-10 bg-primary" />
+            <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
               Últimas noticias
             </span>
           </div>
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-14 reveal">
-            <h2 className="text-4xl md:text-6xl font-extrabold text-balance">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-10 sm:mb-14 reveal">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-balance">
               Lo que está pasando en La Rioja.
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {news.map((n, i) => (
               <article
                 key={n.title}
@@ -448,8 +448,8 @@ export default function PRORioja() {
       </section>
 
       {/* QUIENES SOMOS */}
-      <section id="quienes-somos" className="py-24 lg:py-36 scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <section id="quienes-somos" className="py-16 sm:py-24 lg:py-36 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div className="relative reveal">
             <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary -z-10" />
             <div className="bg-[oklch(0.13_0.01_80)] aspect-[4/3] flex items-center justify-center relative overflow-hidden">
@@ -470,24 +470,24 @@ export default function PRORioja() {
                 Quiénes somos
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-balance">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 sm:mb-6 text-balance">
               Un equipo riojano comprometido con el cambio real.
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
               El PRO La Rioja reúne a vecinos, profesionales, productores y militantes que comparten
               una misma convicción: la provincia merece más y puede más. Defendemos la república,
               promovemos el trabajo privado y trabajamos para una gestión moderna, honesta y
               eficiente.
             </p>
-            <div className="grid grid-cols-3 gap-6 mt-10">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-10">
               {[
                 { n: "18", l: "Departamentos" },
                 { n: "+5k", l: "Afiliados" },
                 { n: "100%", l: "Compromiso" },
               ].map((s) => (
                 <div key={s.l}>
-                  <div className="text-4xl md:text-5xl font-extrabold text-primary">{s.n}</div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground mt-2">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary">{s.n}</div>
+                  <div className="text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground mt-2">
                     {s.l}
                   </div>
                 </div>
@@ -500,7 +500,7 @@ export default function PRORioja() {
       {/* AFILIATE */}
       <section
         id="afiliate"
-        className="relative overflow-hidden bg-primary text-primary-foreground py-24 lg:py-32 scroll-mt-20"
+        className="relative overflow-hidden bg-primary text-primary-foreground py-16 sm:py-24 lg:py-32 scroll-mt-20"
       >
         {/* Triángulos decorativos estáticos */}
         <svg
@@ -518,16 +518,16 @@ export default function PRORioja() {
           <polygon points="20,88 88,52 20,16" fill="var(--pro-ink)" />
         </svg>
 
-        <div className="relative max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-5 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div className="reveal">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <span className="h-[2px] w-10 bg-primary-foreground" />
-              <span className="text-xs font-bold tracking-[0.3em] uppercase">Afiliate</span>
+            <div className="inline-flex items-center gap-3 mb-5 sm:mb-6">
+              <span className="h-[2px] w-8 sm:w-10 bg-primary-foreground" />
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase">Afiliate</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-balance leading-[0.95]">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-5 sm:mb-6 text-balance leading-[1.02] sm:leading-[0.95]">
               Sumate al equipo que está cambiando La Rioja.
             </h2>
-            <p className="text-lg mb-8 opacity-90 max-w-xl">
+            <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90 max-w-xl">
               Afiliarte al PRO es dar un paso concreto por la provincia que querés. Vas a formar
               parte de un espacio nacional con presencia en cada departamento.
             </p>
@@ -551,14 +551,14 @@ export default function PRORioja() {
               e.preventDefault();
               alert("¡Gracias! Pronto nos pondremos en contacto.");
             }}
-            className="reveal bg-background text-foreground p-8 lg:p-10 shadow-2xl"
+            className="reveal bg-background text-foreground p-6 sm:p-8 lg:p-10 shadow-2xl"
           >
-            <h3 className="text-2xl font-extrabold mb-2">Iniciá tu afiliación</h3>
-            <p className="text-sm text-muted-foreground mb-6">
+            <h3 className="text-xl sm:text-2xl font-extrabold mb-2">Iniciá tu afiliación</h3>
+            <p className="text-sm text-muted-foreground mb-5 sm:mb-6">
               Completá tus datos y nos contactamos para finalizar el trámite.
             </p>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="grid sm:grid-cols-2 gap-3">
                 <Input
                   required
                   placeholder="Nombre"
@@ -609,9 +609,9 @@ export default function PRORioja() {
       {/* CONTACTO / FOOTER */}
       <footer
         id="contacto"
-        className="bg-[oklch(0.11_0.01_80)] text-white/80 pt-20 pb-10 scroll-mt-20"
+        className="bg-[oklch(0.11_0.01_80)] text-white/80 pt-14 sm:pt-20 pb-10 scroll-mt-20"
       >
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-4 gap-10 mb-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-14">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
               <img src={logo} alt="" width={72} height={58} className="h-12 w-auto" />
@@ -677,7 +677,7 @@ export default function PRORioja() {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} PRO La Rioja. Todos los derechos reservados.</span>
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
