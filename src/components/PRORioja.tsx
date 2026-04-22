@@ -1,24 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "@/assets/pro-logo.png";
-import hero from "@/assets/hero-pro.jpg";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Menu, X, ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  Mail,
+  MapPin,
+  Phone,
+  Instagram,
+  Facebook,
+  Twitter,
+  CheckCircle2,
+} from "lucide-react";
 
 const navLinks = [
-  { label: "Propuestas", href: "#propuestas" },
-  { label: "Noticias", href: "#noticias" },
-  { label: "Quiénes somos", href: "#quienes-somos" },
-  { label: "Sumate", href: "#sumate" },
+  { label: "Inicio", id: "inicio" },
+  { label: "Propuestas", id: "propuestas" },
+  { label: "Noticias", id: "noticias" },
+  { label: "Quiénes somos", id: "quienes-somos" },
+  { label: "Afiliate", id: "afiliate" },
+  { label: "Contacto", id: "contacto" },
 ];
 
 const news = [
   {
     img: news1,
     date: "abril 18, 2026",
+    cat: "Provincia",
     title: "Una nueva agenda de desarrollo para La Rioja",
     excerpt:
       "Presentamos un plan integral para impulsar la producción, el empleo privado y la infraestructura en toda la provincia.",
@@ -26,6 +39,7 @@ const news = [
   {
     img: news2,
     date: "abril 12, 2026",
+    cat: "Territorio",
     title: "Encuentro provincial: escuchar para gobernar mejor",
     excerpt:
       "Más de 400 vecinos participaron del encuentro de mesas de trabajo sobre seguridad, salud y educación.",
@@ -33,6 +47,7 @@ const news = [
   {
     img: news3,
     date: "abril 5, 2026",
+    cat: "PRO Joven",
     title: "Voluntarios PRO Joven recorren los barrios",
     excerpt:
       "La militancia joven del PRO La Rioja realizó una nueva jornada de territorio en Capital, Chilecito y Chamical.",
@@ -67,67 +82,172 @@ function useReveal() {
     const els = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => e.isIntersecting && e.target.classList.add("in"));
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
       },
-      { threshold: 0.12 },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
 }
 
-function Triangle({ className = "" }: { className?: string }) {
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState(ids[0]);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
+/** PRO logo mark — yellow play triangle + "pro" wordmark, scalable SVG */
+function PROMark({ className = "" }: { className?: string }) {
   return (
-    <span
-      aria-hidden
-      className={`pro-triangle inline-block bg-primary ${className}`}
-      style={{ transform: "rotate(180deg)" }}
-    />
+    <svg viewBox="0 0 220 90" className={className} aria-label="PRO" role="img">
+      <path d="M5 10 L5 80 L70 45 Z" fill="currentColor" />
+      <text
+        x="90"
+        y="72"
+        fontFamily="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+        fontSize="78"
+        fontWeight="900"
+        fill="currentColor"
+        letterSpacing="-3"
+      >
+        pro
+      </text>
+    </svg>
   );
+}
+
+function smoothScroll(id: string) {
+  const el = document.getElementById(id);
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
 }
 
 export default function PRORioja() {
   useReveal();
+  const active = useActiveSection(navLinks.map((l) => l.id));
   const [open, setOpen] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const go = (id: string) => {
+    setOpen(false);
+    smoothScroll(id);
+  };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
-            <img src={logo} alt="Logo PRO" width={72} height={58} className="h-12 w-auto" />
-            <div className="leading-tight border-l border-border pl-3">
-              <div className="font-extrabold tracking-tight text-sm">La Rioja</div>
-              <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 h-18 lg:h-20 flex items-center justify-between">
+          <button
+            onClick={() => go("inicio")}
+            className="flex items-center gap-3 group"
+            aria-label="PRO La Rioja - Inicio"
+          >
+            <img
+              src={logo}
+              alt="Logo PRO"
+              width={72}
+              height={58}
+              className="h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              className={`leading-tight border-l pl-3 hidden sm:block transition-colors ${
+                scrolled ? "border-border" : "border-white/30"
+              }`}
+            >
+              <div
+                className={`font-extrabold tracking-tight text-sm transition-colors ${
+                  scrolled ? "text-foreground" : "text-white"
+                }`}
+              >
+                La Rioja
+              </div>
+              <div
+                className={`text-[10px] tracking-[0.2em] uppercase transition-colors ${
+                  scrolled ? "text-muted-foreground" : "text-white/70"
+                }`}
+              >
                 Propuesta Republicana
               </div>
             </div>
-          </a>
+          </button>
 
-          <nav className="hidden lg:flex items-center gap-10">
-            {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="yellow-underline text-sm font-semibold py-1"
-              >
-                {l.label}
-              </a>
-            ))}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((l) => {
+              const isActive = active === l.id;
+              return (
+                <button
+                  key={l.id}
+                  onClick={() => go(l.id)}
+                  className={`relative px-4 py-2 text-sm font-semibold transition-colors ${
+                    scrolled
+                      ? isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                      : isActive
+                        ? "text-white"
+                        : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  {l.label}
+                  <span
+                    className={`absolute left-4 right-4 -bottom-0.5 h-[3px] bg-primary transition-transform duration-300 origin-left ${
+                      isActive ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </button>
+              );
+            })}
           </nav>
 
           <div className="hidden lg:block">
-            <Button asChild className="rounded-none font-bold px-6 h-11">
-              <a href="#sumate">
-                Sumate <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+            <Button
+              onClick={() => go("afiliate")}
+              className="rounded-none font-bold px-6 h-11 bg-primary text-primary-foreground hover:bg-primary/90 hover:translate-y-[-2px] transition-all duration-300 shadow-[var(--shadow-yellow)]"
+            >
+              Afiliate <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
 
           <button
-            className="lg:hidden p-2"
+            className={`lg:hidden p-2 transition-colors ${
+              scrolled ? "text-foreground" : "text-white"
+            }`}
             onClick={() => setOpen(!open)}
             aria-label="Menú"
           >
@@ -135,45 +255,63 @@ export default function PRORioja() {
           </button>
         </div>
 
-        {open && (
-          <div className="lg:hidden border-t border-border bg-background">
-            <div className="px-5 py-4 flex flex-col gap-3">
-              {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="py-2 font-semibold"
-                >
-                  {l.label}
-                </a>
-              ))}
-              <Button asChild className="rounded-none font-bold mt-2">
-                <a href="#sumate" onClick={() => setOpen(false)}>
-                  Sumate
-                </a>
-              </Button>
-            </div>
+        {/* mobile drawer */}
+        <div
+          className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+            open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          } bg-background border-t border-border`}
+        >
+          <div className="px-5 py-4 flex flex-col">
+            {navLinks.map((l) => (
+              <button
+                key={l.id}
+                onClick={() => go(l.id)}
+                className={`text-left py-3 font-semibold border-b border-border/60 last:border-0 transition-colors ${
+                  active === l.id ? "text-primary-foreground bg-primary px-3" : ""
+                }`}
+              >
+                {l.label}
+              </button>
+            ))}
+            <Button
+              onClick={() => go("afiliate")}
+              className="rounded-none font-bold mt-4 h-12 bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Afiliate
+            </Button>
           </div>
-        )}
+        </div>
       </header>
 
       {/* HERO */}
-      <section ref={heroRef} className="relative overflow-hidden bg-[oklch(0.15_0.01_80)] text-white">
-        <div
-          className="absolute inset-0 opacity-50"
-          style={{
-            backgroundImage: `url(${hero})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.15_0.01_80)] via-[oklch(0.15_0.01_80/0.7)] to-transparent" />
+      <section
+        id="inicio"
+        className="relative min-h-screen flex items-center bg-[oklch(0.13_0.01_80)] text-white overflow-hidden"
+      >
+        {/* Composición geométrica de fondo (sin personas, sin animación) */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
+          {/* gradiente sutil */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.18_0.01_80)] via-[oklch(0.13_0.01_80)] to-[oklch(0.10_0.01_80)]" />
+          {/* Triángulo PRO grande hacia arriba (play) en marca de agua */}
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="xMaxYMid slice"
+            className="absolute right-0 top-0 h-full w-[70%] opacity-[0.12]"
+          >
+            <polygon points="20,90 90,55 20,20" fill="var(--pro-yellow)" />
+          </svg>
+          {/* Acento amarillo sólido */}
+          <svg
+            viewBox="0 0 100 100"
+            className="absolute right-[6%] top-1/2 -translate-y-1/2 h-[55%] aspect-square"
+          >
+            <polygon points="20,88 88,52 20,16" fill="var(--pro-yellow)" />
+          </svg>
+          {/* Línea horizontal sutil */}
+          <div className="absolute left-0 right-0 top-1/2 h-px bg-white/5" />
+        </div>
 
-        <Triangle className="float-tri absolute -right-10 top-10 w-72 h-72 opacity-90" />
-        <Triangle className="absolute -left-20 -bottom-24 w-96 h-96 opacity-20" />
-
-        <div className="relative max-w-7xl mx-auto px-5 lg:px-8 py-28 lg:py-44">
+        <div className="relative max-w-7xl mx-auto px-5 lg:px-8 py-32 lg:py-40 w-full">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-3 mb-8 reveal">
               <span className="h-[2px] w-10 bg-primary" />
@@ -186,63 +324,46 @@ export default function PRORioja() {
               <br />
               empieza hoy.
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl reveal">
+            <p className="mt-8 text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed reveal">
               Somos el espacio que cree en el cambio, en las instituciones y en una provincia con
               futuro. Trabajamos para que La Rioja vuelva a ser protagonista.
             </p>
             <div className="mt-10 flex flex-wrap gap-4 reveal">
               <Button
-                asChild
-                className="rounded-none h-14 px-8 font-bold text-base bg-primary text-primary-foreground hover:bg-primary/90"
+                onClick={() => go("afiliate")}
+                className="rounded-none h-14 px-8 font-bold text-base bg-primary text-primary-foreground hover:bg-primary/90 hover:translate-y-[-2px] transition-all duration-300"
               >
-                <a href="#sumate">
-                  Sumate al equipo <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                Afiliate al PRO <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
-                asChild
+                onClick={() => go("propuestas")}
                 variant="outline"
-                className="rounded-none h-14 px-8 font-bold text-base bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground"
+                className="rounded-none h-14 px-8 font-bold text-base bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground transition-all duration-300"
               >
-                <a href="#propuestas">Conocé nuestras propuestas</a>
+                Conocé nuestras propuestas
               </Button>
             </div>
           </div>
         </div>
 
-        {/* marquee */}
-        <div className="relative border-t border-white/10 bg-black/30 py-4 overflow-hidden">
-          <div className="marquee-track flex gap-12 whitespace-nowrap text-sm font-bold uppercase tracking-[0.25em] text-white/60">
-            {Array.from({ length: 2 }).map((_, k) => (
-              <div key={k} className="flex gap-12">
-                {[
-                  "República",
-                  "Trabajo",
-                  "Educación",
-                  "Seguridad",
-                  "Producción",
-                  "Federalismo",
-                  "Transparencia",
-                  "Futuro",
-                ].map((w) => (
-                  <span key={w} className="flex items-center gap-12">
-                    {w}
-                    <Triangle className="w-3 h-3" />
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Indicador de scroll */}
+        <button
+          onClick={() => go("propuestas")}
+          aria-label="Bajar"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-primary transition-colors hidden md:flex flex-col items-center gap-2 group"
+        >
+          <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+          <span className="block w-px h-10 bg-current group-hover:h-14 transition-all duration-300" />
+        </button>
       </section>
 
       {/* PROPUESTAS */}
-      <section id="propuestas" className="py-24 lg:py-36">
+      <section id="propuestas" className="py-24 lg:py-36 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-16 reveal">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Triangle className="w-4 h-4" />
+                <span className="h-[2px] w-10 bg-primary" />
                 <span className="text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
                   Nuestras propuestas
                 </span>
@@ -257,14 +378,15 @@ export default function PRORioja() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {proposals.map((p) => (
+            {proposals.map((p, i) => (
               <article
                 key={p.n}
-                className="reveal hover-lift bg-secondary p-10 border border-border group cursor-pointer"
+                style={{ transitionDelay: `${i * 80}ms` }}
+                className="reveal hover-lift bg-secondary p-10 border border-border group cursor-default"
               >
                 <div className="flex items-start justify-between mb-8">
                   <span className="text-5xl font-extrabold text-muted-foreground/30">{p.n}</span>
-                  <Triangle className="w-8 h-8 transition-transform duration-500 group-hover:scale-125" />
+                  <PROMark className="h-7 w-auto text-primary transition-transform duration-500 group-hover:scale-110 group-hover:translate-x-1" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-extrabold mb-4">{p.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{p.text}</p>
@@ -275,10 +397,10 @@ export default function PRORioja() {
       </section>
 
       {/* NOTICIAS */}
-      <section id="noticias" className="py-24 lg:py-36 bg-secondary">
+      <section id="noticias" className="py-24 lg:py-36 bg-secondary scroll-mt-20">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="flex items-center gap-3 mb-4 reveal">
-            <Triangle className="w-4 h-4" />
+            <span className="h-[2px] w-10 bg-primary" />
             <span className="text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
               Últimas noticias
             </span>
@@ -287,23 +409,27 @@ export default function PRORioja() {
             <h2 className="text-4xl md:text-6xl font-extrabold text-balance">
               Lo que está pasando en La Rioja.
             </h2>
-            <a href="#" className="yellow-underline font-bold text-sm py-1">
-              Ver todas →
-            </a>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {news.map((n) => (
-              <article key={n.title} className="reveal group cursor-pointer">
-                <div className="overflow-hidden mb-6">
+            {news.map((n, i) => (
+              <article
+                key={n.title}
+                style={{ transitionDelay: `${i * 100}ms` }}
+                className="reveal group cursor-pointer"
+              >
+                <div className="overflow-hidden mb-6 relative">
                   <img
                     src={n.img}
                     alt={n.title}
                     loading="lazy"
                     width={800}
                     height={600}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <span className="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold tracking-widest uppercase px-3 py-1.5">
+                    {n.cat}
+                  </span>
                 </div>
                 <div className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3">
                   {n.date}
@@ -322,24 +448,24 @@ export default function PRORioja() {
       </section>
 
       {/* QUIENES SOMOS */}
-      <section id="quienes-somos" className="py-24 lg:py-36">
+      <section id="quienes-somos" className="py-24 lg:py-36 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative reveal">
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary -z-10" />
-            <img
-              src={hero}
-              alt="Equipo PRO La Rioja"
-              loading="lazy"
-              width={1200}
-              height={800}
-              className="w-full aspect-[4/3] object-cover"
-            />
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 pro-triangle bg-primary -z-10" style={{ transform: "rotate(180deg)" }} />
+            <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary -z-10" />
+            <div className="bg-[oklch(0.13_0.01_80)] aspect-[4/3] flex items-center justify-center relative overflow-hidden">
+              <PROMark className="h-32 w-auto text-primary relative z-10" />
+              <svg
+                viewBox="0 0 100 100"
+                className="absolute right-[-10%] top-1/2 -translate-y-1/2 h-[120%] opacity-10"
+              >
+                <polygon points="20,88 88,52 20,16" fill="var(--pro-yellow)" />
+              </svg>
+            </div>
           </div>
 
           <div className="reveal">
             <div className="flex items-center gap-3 mb-4">
-              <Triangle className="w-4 h-4" />
+              <span className="h-[2px] w-10 bg-primary" />
               <span className="text-xs font-bold tracking-[0.3em] uppercase text-muted-foreground">
                 Quiénes somos
               </span>
@@ -371,46 +497,121 @@ export default function PRORioja() {
         </div>
       </section>
 
-      {/* SUMATE */}
-      <section id="sumate" className="relative overflow-hidden bg-primary text-primary-foreground py-24 lg:py-36">
-        <Triangle className="absolute -left-16 -top-16 w-72 h-72 bg-primary-foreground/10" />
-        <Triangle className="absolute -right-10 -bottom-10 w-96 h-96 bg-primary-foreground/10" />
-        <div className="relative max-w-4xl mx-auto px-5 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-3 mb-6 reveal justify-center">
-            <span className="h-[2px] w-10 bg-primary-foreground" />
-            <span className="text-xs font-bold tracking-[0.3em] uppercase">Sumate</span>
-            <span className="h-[2px] w-10 bg-primary-foreground" />
+      {/* AFILIATE */}
+      <section
+        id="afiliate"
+        className="relative overflow-hidden bg-primary text-primary-foreground py-24 lg:py-32 scroll-mt-20"
+      >
+        {/* Triángulos decorativos estáticos */}
+        <svg
+          viewBox="0 0 100 100"
+          aria-hidden
+          className="absolute -left-10 -top-10 w-80 h-80 opacity-15 pointer-events-none"
+        >
+          <polygon points="20,88 88,52 20,16" fill="var(--pro-ink)" />
+        </svg>
+        <svg
+          viewBox="0 0 100 100"
+          aria-hidden
+          className="absolute -right-16 -bottom-16 w-96 h-96 opacity-10 pointer-events-none"
+        >
+          <polygon points="20,88 88,52 20,16" fill="var(--pro-ink)" />
+        </svg>
+
+        <div className="relative max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="reveal">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <span className="h-[2px] w-10 bg-primary-foreground" />
+              <span className="text-xs font-bold tracking-[0.3em] uppercase">Afiliate</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-balance leading-[0.95]">
+              Sumate al equipo que está cambiando La Rioja.
+            </h2>
+            <p className="text-lg mb-8 opacity-90 max-w-xl">
+              Afiliarte al PRO es dar un paso concreto por la provincia que querés. Vas a formar
+              parte de un espacio nacional con presencia en cada departamento.
+            </p>
+            <ul className="space-y-3 mb-10">
+              {[
+                "Participación en encuentros y capacitaciones",
+                "Acceso a la red nacional del PRO",
+                "Voz en las decisiones locales",
+                "Trámite 100% online y gratuito",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 mt-0.5 shrink-0" />
+                  <span className="font-medium">{b}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <h2 className="text-5xl md:text-7xl font-extrabold mb-6 reveal text-balance">
-            Hagamos juntos la La Rioja del futuro.
-          </h2>
-          <p className="text-lg md:text-xl mb-10 reveal opacity-90 max-w-2xl mx-auto">
-            Dejanos tu mail y mantenete al tanto de nuestras actividades, propuestas y eventos en
-            toda la provincia.
-          </p>
+
           <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto reveal"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("¡Gracias! Pronto nos pondremos en contacto.");
+            }}
+            className="reveal bg-background text-foreground p-8 lg:p-10 shadow-2xl"
           >
-            <Input
-              type="email"
-              required
-              placeholder="tu@email.com"
-              className="h-14 rounded-none bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-primary-foreground"
-            />
+            <h3 className="text-2xl font-extrabold mb-2">Iniciá tu afiliación</h3>
+            <p className="text-sm text-muted-foreground mb-6">
+              Completá tus datos y nos contactamos para finalizar el trámite.
+            </p>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <Input
+                  required
+                  placeholder="Nombre"
+                  className="h-12 rounded-none border-border focus-visible:ring-primary"
+                />
+                <Input
+                  required
+                  placeholder="Apellido"
+                  className="h-12 rounded-none border-border focus-visible:ring-primary"
+                />
+              </div>
+              <Input
+                required
+                type="email"
+                placeholder="Email"
+                className="h-12 rounded-none border-border focus-visible:ring-primary"
+              />
+              <Input
+                required
+                type="tel"
+                placeholder="Teléfono"
+                className="h-12 rounded-none border-border focus-visible:ring-primary"
+              />
+              <Input
+                required
+                placeholder="DNI"
+                className="h-12 rounded-none border-border focus-visible:ring-primary"
+              />
+              <Input
+                required
+                placeholder="Localidad / Departamento"
+                className="h-12 rounded-none border-border focus-visible:ring-primary"
+              />
+            </div>
             <Button
               type="submit"
-              className="h-14 rounded-none px-8 font-bold bg-primary-foreground text-primary hover:bg-primary-foreground/90"
+              className="mt-6 w-full h-14 rounded-none font-bold text-base bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
             >
-              Suscribirme
+              Quiero afiliarme <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            <p className="text-[11px] text-muted-foreground mt-4 text-center">
+              Tus datos son confidenciales y solo se usan para procesar tu afiliación.
+            </p>
           </form>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[oklch(0.12_0.01_80)] text-white/80 py-16">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-4 gap-10">
+      {/* CONTACTO / FOOTER */}
+      <footer
+        id="contacto"
+        className="bg-[oklch(0.11_0.01_80)] text-white/80 pt-20 pb-10 scroll-mt-20"
+      >
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-4 gap-10 mb-14">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
               <img src={logo} alt="" width={72} height={58} className="h-12 w-auto" />
@@ -421,20 +622,39 @@ export default function PRORioja() {
                 </div>
               </div>
             </div>
-            <p className="max-w-md text-sm leading-relaxed">
+            <p className="max-w-md text-sm leading-relaxed mb-6">
               Trabajamos por una provincia con instituciones fuertes, oportunidades reales y futuro
               para todos los riojanos.
             </p>
+            <div className="flex gap-3">
+              {[
+                { I: Instagram, label: "Instagram" },
+                { I: Facebook, label: "Facebook" },
+                { I: Twitter, label: "Twitter" },
+              ].map(({ I, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                >
+                  <I className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-widest">Enlaces</h4>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-widest">Menú</h4>
             <ul className="space-y-2 text-sm">
               {navLinks.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className="hover:text-primary transition-colors">
+                <li key={l.id}>
+                  <button
+                    onClick={() => go(l.id)}
+                    className="hover:text-primary transition-colors text-left"
+                  >
                     {l.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -446,18 +666,18 @@ export default function PRORioja() {
             </h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 mt-0.5 text-primary" /> La Rioja, Argentina
+                <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" /> La Rioja, Argentina
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="h-4 w-4 mt-0.5 text-primary" /> contacto@prolarioja.ar
+                <Mail className="h-4 w-4 mt-0.5 text-primary shrink-0" /> contacto@prolarioja.ar
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="h-4 w-4 mt-0.5 text-primary" /> +54 380 000-0000
+                <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" /> +54 380 000-0000
               </li>
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 mt-12 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} PRO La Rioja. Todos los derechos reservados.</span>
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
