@@ -62,9 +62,15 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.25rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.15 0.01 80);
+  --pro-yellow: oklch(0.88 0.18 95);
+  --pro-yellow-deep: oklch(0.82 0.19 90);
+  --pro-ink: oklch(0.18 0.01 80);
+  --gradient-yellow: linear-gradient(135deg, var(--pro-yellow), var(--pro-yellow-deep));
+  --shadow-yellow: 0 20px 50px -20px color-mix(in oklab, var(--pro-yellow) 60%, transparent);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
