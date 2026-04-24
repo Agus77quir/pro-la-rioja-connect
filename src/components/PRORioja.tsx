@@ -80,6 +80,11 @@ const proposals = [
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
+    // Fallback: si IO no está disponible, mostrar todo
+    if (typeof IntersectionObserver === "undefined") {
+      els.forEach((el) => el.classList.add("in"));
+      return;
+    }
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -89,9 +94,17 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" },
     );
-    els.forEach((el) => io.observe(el));
+    els.forEach((el) => {
+      // Si el elemento ya está dentro del viewport en el primer paint, mostrarlo de inmediato
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("in");
+      } else {
+        io.observe(el);
+      }
+    });
     return () => io.disconnect();
   }, []);
 }
