@@ -290,23 +290,25 @@ export default function PRORioja() {
       >
         {/* Composición geométrica de fondo (sin personas, sin animación) */}
         <div aria-hidden className="absolute inset-0 pointer-events-none">
-          {/* gradiente sutil */}
+          {/* gradiente base */}
           <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.18_0.01_80)] via-[oklch(0.13_0.01_80)] to-[oklch(0.10_0.01_80)]" />
-          {/* Triángulo PRO grande hacia arriba (play) en marca de agua */}
+          {/* Triángulo PRO marca de agua, suave y desplazado al borde */}
           <svg
             viewBox="0 0 100 100"
             preserveAspectRatio="xMaxYMid slice"
-            className="absolute right-0 top-0 h-full w-[70%] opacity-[0.12]"
+            className="absolute -right-[10%] top-0 h-full w-[60%] opacity-[0.08]"
           >
             <polygon points="20,90 90,55 20,20" fill="var(--pro-yellow)" />
           </svg>
-          {/* Acento amarillo sólido */}
+          {/* Acento amarillo en esquina inferior derecha (fuera del área de texto/botones) */}
           <svg
             viewBox="0 0 100 100"
-            className="absolute right-[6%] top-1/2 -translate-y-1/2 h-[55%] aspect-square"
+            className="absolute -right-[5%] -bottom-[10%] h-[45%] aspect-square opacity-90 hidden lg:block"
           >
             <polygon points="20,88 88,52 20,16" fill="var(--pro-yellow)" />
           </svg>
+          {/* Velo oscuro sobre la mitad izquierda para garantizar contraste del texto blanco */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.10_0.01_80)] via-[oklch(0.10_0.01_80)]/85 to-transparent" />
           {/* Línea horizontal sutil */}
           <div className="absolute left-0 right-0 top-1/2 h-px bg-white/5" />
         </div>
