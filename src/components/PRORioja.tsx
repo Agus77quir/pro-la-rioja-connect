@@ -340,7 +340,7 @@ export default function PRORioja() {
               <Button
                 onClick={() => go("propuestas")}
                 variant="outline"
-                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground transition-all duration-300 w-full sm:w-auto justify-center"
+                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-foreground transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 Conocé nuestras propuestas
               </Button>
