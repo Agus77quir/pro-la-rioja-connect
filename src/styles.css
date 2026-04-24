@@ -180,12 +180,18 @@
   }
   .yellow-underline:hover { background-size: 100% 3px; }
 
+  /* Por defecto los elementos .reveal son visibles (no requieren JS).
+     Solo cuando el JS marca <html> con .js-ready se aplica la animación de entrada. */
   .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  html.js-ready .reveal {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
   }
-  .reveal.in {
+  html.js-ready .reveal.in {
     opacity: 1;
     transform: translateY(0);
   }
