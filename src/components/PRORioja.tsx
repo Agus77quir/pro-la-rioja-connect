@@ -159,6 +159,12 @@ function smoothScroll(id: string) {
   }
 }
 
+function getHashSection() {
+  if (typeof window === "undefined") return "";
+  const hash = window.location.hash.replace(/^#\/?/, "");
+  return hash.startsWith("section=") ? hash.replace(/^section=/, "") : "";
+}
+
 export default function PRORioja() {
   useReveal();
   const active = useActiveSection(navLinks.map((l) => l.id));
@@ -172,8 +178,19 @@ export default function PRORioja() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const section = getHashSection();
+    if (!section) return;
+
+    const raf = window.requestAnimationFrame(() => smoothScroll(section));
+    return () => window.cancelAnimationFrame(raf);
+  }, []);
+
   const go = (id: string) => {
     setOpen(false);
+    if (typeof window !== "undefined") {
+      window.history.replaceState(window.history.state, "", `#section=${id}`);
+    }
     smoothScroll(id);
   };
 
@@ -686,10 +703,12 @@ export default function PRORioja() {
                 <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" /> La Rioja, Argentina
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="h-4 w-4 mt-0.5 text-primary shrink-0" /> contacto@prolarioja.ar
+                <Mail className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                <span>contacto@prolarioja.ar</span>
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" /> +54 380 000-0000
+                <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                <span>+54 380 000-0000</span>
               </li>
             </ul>
           </div>
