@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { createHashHistory } from "@tanstack/history";
 import logo from "@/assets/pro-logo.png";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
@@ -190,8 +189,7 @@ export default function PRORioja() {
   const go = (id: string) => {
     setOpen(false);
     if (typeof window !== "undefined") {
-      const history = createHashHistory();
-      history.replace(`/section=${id}`);
+      window.history.replaceState(window.history.state, "", `#section=${id}`);
     }
     smoothScroll(id);
   };
