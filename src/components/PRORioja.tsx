@@ -360,7 +360,7 @@ export default function PRORioja() {
             </h1>
             <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed reveal">
               Somos el espacio que cree en el cambio, en las instituciones y en una provincia con
-              futuro. Trabajamos para que La Rioja vuelva a ser protagonista.
+              futuro. Trabajamos para una Rioja comprometida, con desarrollo y futuro.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 reveal">
               <Button
