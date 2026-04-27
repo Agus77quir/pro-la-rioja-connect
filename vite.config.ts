@@ -11,6 +11,6 @@ export default defineConfig({
     prerender: {
       enabled: true,
     },
-    pages: ["/"],
+    pages: [{ path: "/" }],
   },
 });
