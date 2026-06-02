@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/pro-logo.png";
+import logoAsset from "@/assets/pensar-logo.svg.asset.json";
+const logo = logoAsset.url;
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
@@ -209,14 +210,14 @@ export default function PRORioja() {
           <button
             onClick={() => go("inicio")}
             className="flex items-center gap-2 sm:gap-3 group min-w-0"
-            aria-label="PRO La Rioja - Inicio"
+            aria-label="Fundación Pensar Pro La Rioja - Inicio"
           >
             <img
               src={logo}
-              alt="Logo PRO"
-              width={72}
-              height={58}
-              className="h-9 sm:h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0"
+              alt="Fundación Pensar Pro La Rioja"
+              width={140}
+              height={86}
+              className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0"
             />
             <div
               className={`leading-tight border-l pl-3 hidden sm:block transition-colors ${
@@ -228,14 +229,14 @@ export default function PRORioja() {
                   scrolled ? "text-foreground" : "text-white"
                 }`}
               >
-                La Rioja
+                Fundación Pensar
               </div>
               <div
                 className={`text-[10px] tracking-[0.2em] uppercase transition-colors ${
                   scrolled ? "text-muted-foreground" : "text-white/70"
                 }`}
               >
-                Propuesta Republicana
+                Pro La Rioja
               </div>
             </div>
           </button>
@@ -351,7 +352,7 @@ export default function PRORioja() {
             <div className="inline-flex items-center gap-3 mb-6 sm:mb-8 reveal">
               <span className="h-[2px] w-8 sm:w-10 bg-primary" />
               <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-primary">
-                PRO La Rioja
+                Fundación Pensar Pro La Rioja
               </span>
             </div>
             <h1 className="text-balance text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.02] sm:leading-[0.95] reveal">
@@ -368,7 +369,7 @@ export default function PRORioja() {
                 onClick={() => go("afiliate")}
                 className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-primary text-primary-foreground hover:bg-primary/90 hover:translate-y-[-2px] transition-all duration-300 w-full sm:w-auto justify-center"
               >
-                Afiliate al PRO <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                Sumate a la Fundación <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <Button
                 onClick={() => go("propuestas")}
@@ -487,8 +488,12 @@ export default function PRORioja() {
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div className="relative reveal">
             <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary -z-10" />
-            <div className="bg-[oklch(0.13_0.01_80)] aspect-[4/3] flex items-center justify-center relative overflow-hidden">
-              <PROMark className="h-32 w-auto text-primary relative z-10" />
+            <div className="bg-[oklch(0.13_0.01_80)] aspect-[4/3] flex items-center justify-center relative overflow-hidden p-10">
+              <img
+                src={logo}
+                alt="Fundación Pensar Pro La Rioja"
+                className="relative z-10 w-2/3 max-w-xs h-auto drop-shadow-[0_8px_30px_rgba(247,172,0,0.35)]"
+              />
               <svg
                 viewBox="0 0 100 100"
                 className="absolute right-[-10%] top-1/2 -translate-y-1/2 h-[120%] opacity-10"
@@ -509,10 +514,10 @@ export default function PRORioja() {
               Un equipo riojano comprometido con el cambio real.
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-              El PRO La Rioja reúne a vecinos, profesionales, productores y militantes que comparten
-              una misma convicción: la provincia merece más y puede más. Defendemos la república,
-              promovemos el trabajo privado y trabajamos para una gestión moderna, honesta y
-              eficiente.
+              La Fundación Pensar Pro La Rioja reúne a vecinos, profesionales, productores y
+              militantes que comparten una misma convicción: la provincia merece más y puede más.
+              Defendemos la república, promovemos el trabajo privado y trabajamos para una gestión
+              moderna, honesta y eficiente.
             </p>
             <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-10">
               {[
@@ -563,13 +568,13 @@ export default function PRORioja() {
               Sumate al equipo que está cambiando La Rioja.
             </h2>
             <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90 max-w-xl">
-              Afiliarte al PRO es dar un paso concreto por la provincia que querés. Vas a formar
-              parte de un espacio nacional con presencia en cada departamento.
+              Sumarte a la Fundación Pensar Pro La Rioja es dar un paso concreto por la provincia
+              que querés. Vas a formar parte de un espacio con presencia en cada departamento.
             </p>
             <ul className="space-y-3 mb-10">
               {[
                 "Participación en encuentros y capacitaciones",
-                "Acceso a la red nacional del PRO",
+                "Acceso a la red de la Fundación Pensar",
                 "Voz en las decisiones locales",
                 "Trámite 100% online y gratuito",
               ].map((b) => (
@@ -588,9 +593,9 @@ export default function PRORioja() {
             }}
             className="reveal bg-background text-foreground p-6 sm:p-8 lg:p-10 shadow-2xl"
           >
-            <h3 className="text-xl sm:text-2xl font-extrabold mb-2">Iniciá tu afiliación</h3>
+            <h3 className="text-xl sm:text-2xl font-extrabold mb-2">Sumate a la Fundación</h3>
             <p className="text-sm text-muted-foreground mb-5 sm:mb-6">
-              Completá tus datos y nos contactamos para finalizar el trámite.
+              Completá tus datos y nos contactamos a la brevedad.
             </p>
             <div className="space-y-3 sm:space-y-4">
               <div className="grid sm:grid-cols-2 gap-3">
@@ -632,10 +637,10 @@ export default function PRORioja() {
               type="submit"
               className="mt-6 w-full h-14 rounded-none font-bold text-base bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
             >
-              Quiero afiliarme <ArrowRight className="ml-2 h-5 w-5" />
+              Quiero sumarme <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <p className="text-[11px] text-muted-foreground mt-4 text-center">
-              Tus datos son confidenciales y solo se usan para procesar tu afiliación.
+              Tus datos son confidenciales y solo se usan para procesar tu solicitud.
             </p>
           </form>
         </div>
@@ -649,11 +654,11 @@ export default function PRORioja() {
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-14">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <img src={logo} alt="" width={72} height={58} className="h-12 w-auto" />
+              <img src={logo} alt="" width={140} height={86} className="h-14 w-auto" />
               <div className="border-l border-white/20 pl-3">
-                <div className="font-extrabold text-white">La Rioja</div>
+                <div className="font-extrabold text-white">Fundación Pensar</div>
                 <div className="text-xs uppercase tracking-[0.2em] text-white/50">
-                  Propuesta Republicana
+                  Pro La Rioja
                 </div>
               </div>
             </div>
@@ -705,7 +710,7 @@ export default function PRORioja() {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                <span>contacto@prolarioja.ar</span>
+                <span>contacto@fundacionpensarlarioja.ar</span>
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
@@ -715,7 +720,7 @@ export default function PRORioja() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
-          <span>© {new Date().getFullYear()} PRO La Rioja. Todos los derechos reservados.</span>
+          <span>© {new Date().getFullYear()} Fundación Pensar Pro La Rioja. Todos los derechos reservados.</span>
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
       </footer>
