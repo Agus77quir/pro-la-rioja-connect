@@ -7,9 +7,9 @@ type Msg = { role: "bot" | "user"; text: string };
 
 const faqs: { q: string; keywords: string[]; a: string }[] = [
   {
-    q: "¿Cómo me afilio a PRO La Rioja?",
-    keywords: ["afili", "sumar", "unir", "membres"],
-    a: "Podés afiliarte completando el formulario en la sección 'Afiliate' de esta misma página. Es gratuito y solo te toma un minuto.",
+    q: "¿Cómo me sumo a la Fundación?",
+    keywords: ["afili", "sumar", "unir", "membres", "particip"],
+    a: "Podés sumarte completando el formulario en la sección 'Sumate' de esta misma página. Es gratuito y solo te toma un minuto.",
   },
   {
     q: "¿Cuáles son las propuestas?",
@@ -19,7 +19,7 @@ const faqs: { q: string; keywords: string[]; a: string }[] = [
   {
     q: "¿Cómo los contacto?",
     keywords: ["contact", "tel", "mail", "email", "direcc", "ubicac"],
-    a: "Escribinos a contacto@prolarioja.ar o llamanos al +54 380 000-0000. También podés usar el formulario en 'Contacto'.",
+    a: "Escribinos a contacto@fundacionpensarlarioja.ar o llamanos al +54 380 000-0000. También podés usar el formulario en 'Contacto'.",
   },
   {
     q: "¿Dónde están las novedades?",
@@ -28,13 +28,13 @@ const faqs: { q: string; keywords: string[]; a: string }[] = [
   },
   {
     q: "¿Puedo ser voluntario?",
-    keywords: ["volunt", "ayud", "colabor", "particip"],
-    a: "¡Sí! Sumate como voluntario afiliándote y marcando tu interés. Te contactamos desde el equipo territorial.",
+    keywords: ["volunt", "ayud", "colabor"],
+    a: "¡Sí! Sumate como voluntario completando el formulario y marcando tu interés. Te contactamos desde el equipo territorial.",
   },
   {
-    q: "¿Quiénes integran PRO La Rioja?",
-    keywords: ["quien", "equipo", "integr", "lider", "referent"],
-    a: "Somos un espacio republicano integrado por vecinos, profesionales y dirigentes comprometidos. Más info en 'Quiénes somos'.",
+    q: "¿Qué es la Fundación Pensar Pro La Rioja?",
+    keywords: ["quien", "equipo", "integr", "lider", "referent", "fundac", "pensar", "que es"],
+    a: "Somos la Fundación Pensar Pro La Rioja: un espacio de pensamiento y acción política integrado por vecinos, profesionales y dirigentes comprometidos con la provincia. Más info en 'Quiénes somos'.",
   },
 ];
 
@@ -45,9 +45,9 @@ function findAnswer(input: string): string {
   const match = faqs.find((f) => f.keywords.some((k) => text.includes(k)));
   if (match) return match.a;
   if (/hola|buen[oa]s|saludos|hey/.test(text))
-    return "¡Hola! Soy el asistente de PRO La Rioja. ¿En qué puedo ayudarte? Podés preguntarme por afiliación, propuestas o contacto.";
+    return "¡Hola! Soy el asistente de la Fundación Pensar Pro La Rioja. ¿En qué puedo ayudarte? Podés preguntarme por propuestas, cómo sumarte o contacto.";
   if (/gracias/.test(text)) return "¡Gracias a vos por escribirnos!";
-  return "No tengo una respuesta exacta para eso. Probá con: afiliación, propuestas, contacto, noticias o voluntariado. También podés escribirnos a contacto@prolarioja.ar.";
+  return "No tengo una respuesta exacta para eso. Probá con: propuestas, sumarme, contacto, noticias o voluntariado. También podés escribirnos a contacto@fundacionpensarlarioja.ar.";
 }
 
 export default function Chatbot() {
@@ -56,7 +56,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "bot",
-      text: "¡Hola! 👋 Soy el asistente virtual de PRO La Rioja. ¿En qué puedo ayudarte hoy?",
+      text: "¡Hola! 👋 Soy el asistente virtual de la Fundación Pensar Pro La Rioja. ¿En qué puedo ayudarte hoy?",
     },
   ]);
   const endRef = useRef<HTMLDivElement>(null);
@@ -88,7 +88,7 @@ export default function Chatbot() {
       {open && (
         <div className="fixed bottom-24 right-5 z-50 w-[92vw] max-w-sm rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-primary text-primary-foreground px-4 py-3">
-            <div className="font-semibold">Asistente PRO La Rioja</div>
+            <div className="font-semibold">Asistente Fundación Pensar Pro La Rioja</div>
             <div className="text-xs opacity-80">Respuestas a preguntas frecuentes</div>
           </div>
 

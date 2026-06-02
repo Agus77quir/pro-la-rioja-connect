@@ -29,18 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PRO La Rioja — La Rioja que queremos, empieza hoy" },
+      { title: "Fundación Pensar Pro La Rioja — La Rioja que queremos, empieza hoy" },
       {
         name: "description",
         content:
-          "PRO La Rioja: el espacio republicano que trabaja por una provincia con instituciones fuertes, trabajo y futuro. Sumate al cambio.",
+          "Fundación Pensar Pro La Rioja: el espacio que trabaja por una provincia con instituciones fuertes, trabajo y futuro. Sumate al cambio.",
       },
-      { name: "author", content: "PRO La Rioja" },
-      { property: "og:title", content: "PRO La Rioja" },
+      { name: "author", content: "Fundación Pensar Pro La Rioja" },
+      { property: "og:title", content: "Fundación Pensar Pro La Rioja" },
       { property: "og:description", content: "Trabajamos por la La Rioja del futuro." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@PROLaRioja" },
+      { name: "twitter:site", content: "@FundacionPensarLaRioja" },
     ],
     links: [
       {
