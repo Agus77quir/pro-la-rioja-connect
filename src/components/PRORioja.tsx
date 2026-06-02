@@ -17,6 +17,7 @@ import {
   Twitter,
   CheckCircle2,
 } from "lucide-react";
+import Chatbot from "@/components/Chatbot";
 
 const navLinks = [
   { label: "Inicio", id: "inicio" },
@@ -718,6 +719,7 @@ export default function PRORioja() {
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
       </footer>
+      <Chatbot />
     </div>
   );
 }
