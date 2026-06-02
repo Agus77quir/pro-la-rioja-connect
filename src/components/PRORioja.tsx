@@ -719,6 +719,7 @@ export default function PRORioja() {
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
       </footer>
+      <Chatbot />
     </div>
   );
 }
