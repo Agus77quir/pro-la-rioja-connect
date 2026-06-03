@@ -74,7 +74,7 @@ const proposals = [
   },
   {
     n: "04",
-    title: "Seguridad para vivir tranquilos",
+    title: "Seguridad",
     text: "Más presencia policial, tecnología, justicia ágil y una política firme contra el delito y el narcotráfico.",
   },
 ];
