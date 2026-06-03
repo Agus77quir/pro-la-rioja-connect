@@ -34,7 +34,7 @@ const news = [
     img: news1,
     date: "abril 18, 2026",
     cat: "Provincia",
-    title: "Una nueva agenda de desarrollo para La Rioja",
+    title: "Nuestra agenda para el desarrollo",
     excerpt:
       "Presentamos un plan integral para impulsar la producción, el empleo privado y la infraestructura en toda la provincia.",
   },
