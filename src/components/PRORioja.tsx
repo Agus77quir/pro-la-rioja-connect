@@ -49,10 +49,10 @@ const news = [
   {
     img: news3,
     date: "abril 5, 2026",
-    cat: "PRO Joven",
-    title: "Voluntarios PRO Joven recorren los barrios",
+    cat: "Juventud",
+    title: "Voluntarios jóvenes recorren los barrios",
     excerpt:
-      "La militancia joven del PRO La Rioja realizó una nueva jornada de territorio en Capital, Chilecito y Chamical.",
+      "La militancia joven de la Fundación Pensar La Rioja realizó una nueva jornada de territorio en Capital, Chilecito y Chamical.",
   },
 ];
 
@@ -136,19 +136,8 @@ function useActiveSection(ids: string[]) {
 /** PRO logo mark — yellow play triangle + "pro" wordmark, scalable SVG */
 function PROMark({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 220 90" className={className} aria-label="PRO" role="img">
+    <svg viewBox="0 0 90 90" className={className} aria-label="" role="img">
       <path d="M5 10 L5 80 L70 45 Z" fill="currentColor" />
-      <text
-        x="90"
-        y="72"
-        fontFamily="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-        fontSize="78"
-        fontWeight="900"
-        fill="currentColor"
-        letterSpacing="-3"
-      >
-        pro
-      </text>
     </svg>
   );
 }
