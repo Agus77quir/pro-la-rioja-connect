@@ -236,7 +236,7 @@ export default function PRORioja() {
                   scrolled ? "text-muted-foreground" : "text-white/70"
                 }`}
               >
-                Pro La Rioja
+                La Rioja
               </div>
             </div>
           </button>
