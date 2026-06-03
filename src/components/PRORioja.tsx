@@ -382,15 +382,6 @@ export default function PRORioja() {
           </div>
         </div>
 
-        {/* Indicador de scroll */}
-        <button
-          onClick={() => go("propuestas")}
-          aria-label="Bajar"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-primary transition-colors hidden md:flex flex-col items-center gap-2 group"
-        >
-          <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-          <span className="block w-px h-10 bg-current group-hover:h-14 transition-all duration-300" />
-        </button>
       </section>
 
       {/* PROPUESTAS */}
