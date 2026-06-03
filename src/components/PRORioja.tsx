@@ -69,7 +69,7 @@ const proposals = [
   },
   {
     n: "03",
-    title: "Educación y futuro",
+    title: "Educación, innovación y tecnología",
     text: "Una educación pública con metas claras, evaluación y oportunidades reales para los chicos de La Rioja.",
   },
   {
