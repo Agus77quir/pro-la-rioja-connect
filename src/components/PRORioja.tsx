@@ -59,7 +59,7 @@ const news = [
 const proposals = [
   {
     n: "01",
-    title: "República y transparencia",
+    title: "Institucionalidad",
     text: "Instituciones fuertes, controles independientes y rendición de cuentas en cada nivel del Estado provincial.",
   },
   {
