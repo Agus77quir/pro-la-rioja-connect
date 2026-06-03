@@ -649,7 +649,7 @@ export default function PRORioja() {
               <div className="border-l border-white/20 pl-3">
                 <div className="font-extrabold text-white">Fundación Pensar</div>
                 <div className="text-xs uppercase tracking-[0.2em] text-white/50">
-                  Pro La Rioja
+                  La Rioja
                 </div>
               </div>
             </div>
