@@ -34,7 +34,7 @@ const news = [
     img: news1,
     date: "abril 18, 2026",
     cat: "Provincia",
-    title: "Una nueva agenda de desarrollo para La Rioja",
+    title: "Nuestra agenda para el desarrollo",
     excerpt:
       "Presentamos un plan integral para impulsar la producción, el empleo privado y la infraestructura en toda la provincia.",
   },
@@ -59,7 +59,7 @@ const news = [
 const proposals = [
   {
     n: "01",
-    title: "República y transparencia",
+    title: "Institucionalidad",
     text: "Instituciones fuertes, controles independientes y rendición de cuentas en cada nivel del Estado provincial.",
   },
   {
@@ -69,12 +69,12 @@ const proposals = [
   },
   {
     n: "03",
-    title: "Educación y futuro",
+    title: "Educación, innovación y tecnología",
     text: "Una educación pública con metas claras, evaluación y oportunidades reales para los chicos de La Rioja.",
   },
   {
     n: "04",
-    title: "Seguridad para vivir tranquilos",
+    title: "Seguridad",
     text: "Más presencia policial, tecnología, justicia ágil y una política firme contra el delito y el narcotráfico.",
   },
 ];
@@ -502,7 +502,7 @@ export default function PRORioja() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 sm:mb-6 text-balance">
-              Un equipo riojano comprometido con el cambio real.
+              Un equipo comprometido con el cambio.
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
               La Fundación Pensar La Rioja reúne a vecinos, profesionales, productores y
@@ -577,63 +577,6 @@ export default function PRORioja() {
             </ul>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert("¡Gracias! Pronto nos pondremos en contacto.");
-            }}
-            className="reveal bg-background text-foreground p-6 sm:p-8 lg:p-10 shadow-2xl"
-          >
-            <h3 className="text-xl sm:text-2xl font-extrabold mb-2">Sumate a la Fundación</h3>
-            <p className="text-sm text-muted-foreground mb-5 sm:mb-6">
-              Completá tus datos y nos contactamos a la brevedad.
-            </p>
-            <div className="space-y-3 sm:space-y-4">
-              <div className="grid sm:grid-cols-2 gap-3">
-                <Input
-                  required
-                  placeholder="Nombre"
-                  className="h-12 rounded-none border-border focus-visible:ring-primary"
-                />
-                <Input
-                  required
-                  placeholder="Apellido"
-                  className="h-12 rounded-none border-border focus-visible:ring-primary"
-                />
-              </div>
-              <Input
-                required
-                type="email"
-                placeholder="Email"
-                className="h-12 rounded-none border-border focus-visible:ring-primary"
-              />
-              <Input
-                required
-                type="tel"
-                placeholder="Teléfono"
-                className="h-12 rounded-none border-border focus-visible:ring-primary"
-              />
-              <Input
-                required
-                placeholder="DNI"
-                className="h-12 rounded-none border-border focus-visible:ring-primary"
-              />
-              <Input
-                required
-                placeholder="Localidad / Departamento"
-                className="h-12 rounded-none border-border focus-visible:ring-primary"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="mt-6 w-full h-14 rounded-none font-bold text-base bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
-            >
-              Quiero sumarme <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <p className="text-[11px] text-muted-foreground mt-4 text-center">
-              Tus datos son confidenciales y solo se usan para procesar tu solicitud.
-            </p>
-          </form>
         </div>
       </section>
 
