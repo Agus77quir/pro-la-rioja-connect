@@ -502,7 +502,7 @@ export default function PRORioja() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 sm:mb-6 text-balance">
-              Un equipo riojano comprometido con el cambio real.
+              Un equipo comprometido con el cambio.
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
               La Fundación Pensar La Rioja reúne a vecinos, profesionales, productores y
