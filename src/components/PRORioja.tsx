@@ -206,7 +206,9 @@ export default function PRORioja() {
               alt="Fundación Pensar La Rioja"
               width={140}
               height={86}
-              className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0"
+              className={`h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0 ${
+                scrolled ? "[filter:invert(1)_hue-rotate(180deg)]" : ""
+              }`}
             />
             <div
               className={`leading-tight border-l pl-3 hidden sm:block transition-colors ${
