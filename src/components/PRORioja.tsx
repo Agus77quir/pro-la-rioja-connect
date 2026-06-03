@@ -210,11 +210,11 @@ export default function PRORioja() {
           <button
             onClick={() => go("inicio")}
             className="flex items-center gap-2 sm:gap-3 group min-w-0"
-            aria-label="Fundación Pensar Pro La Rioja - Inicio"
+            aria-label="Fundación Pensar La Rioja - Inicio"
           >
             <img
               src={logo}
-              alt="Fundación Pensar Pro La Rioja"
+              alt="Fundación Pensar La Rioja"
               width={140}
               height={86}
               className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0"
@@ -236,7 +236,7 @@ export default function PRORioja() {
                   scrolled ? "text-muted-foreground" : "text-white/70"
                 }`}
               >
-                Pro La Rioja
+                La Rioja
               </div>
             </div>
           </button>
@@ -352,7 +352,7 @@ export default function PRORioja() {
             <div className="inline-flex items-center gap-3 mb-6 sm:mb-8 reveal">
               <span className="h-[2px] w-8 sm:w-10 bg-primary" />
               <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-primary">
-                Fundación Pensar Pro La Rioja
+                Fundación Pensar La Rioja
               </span>
             </div>
             <h1 className="text-balance text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.02] sm:leading-[0.95] reveal">
@@ -362,7 +362,7 @@ export default function PRORioja() {
             </h1>
             <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed reveal">
               Somos el espacio que cree en el cambio, en las instituciones y en una provincia con
-              futuro. Trabajamos para una Rioja comprometida, con desarrollo y futuro.
+              futuro.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 reveal">
               <Button
@@ -382,15 +382,6 @@ export default function PRORioja() {
           </div>
         </div>
 
-        {/* Indicador de scroll */}
-        <button
-          onClick={() => go("propuestas")}
-          aria-label="Bajar"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-primary transition-colors hidden md:flex flex-col items-center gap-2 group"
-        >
-          <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-          <span className="block w-px h-10 bg-current group-hover:h-14 transition-all duration-300" />
-        </button>
       </section>
 
       {/* PROPUESTAS */}
@@ -491,7 +482,7 @@ export default function PRORioja() {
             <div className="bg-[oklch(0.13_0.01_80)] aspect-[4/3] flex items-center justify-center relative overflow-hidden p-10">
               <img
                 src={logo}
-                alt="Fundación Pensar Pro La Rioja"
+                alt="Fundación Pensar La Rioja"
                 className="relative z-10 w-2/3 max-w-xs h-auto drop-shadow-[0_8px_30px_rgba(247,172,0,0.35)]"
               />
               <svg
@@ -514,7 +505,7 @@ export default function PRORioja() {
               Un equipo riojano comprometido con el cambio real.
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-              La Fundación Pensar Pro La Rioja reúne a vecinos, profesionales, productores y
+              La Fundación Pensar La Rioja reúne a vecinos, profesionales, productores y
               militantes que comparten una misma convicción: la provincia merece más y puede más.
               Defendemos la república, promovemos el trabajo privado y trabajamos para una gestión
               moderna, honesta y eficiente.
@@ -568,7 +559,7 @@ export default function PRORioja() {
               Sumate al equipo que está cambiando La Rioja.
             </h2>
             <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90 max-w-xl">
-              Sumarte a la Fundación Pensar Pro La Rioja es dar un paso concreto por la provincia
+              Sumarte a la Fundación Pensar La Rioja es dar un paso concreto por la provincia
               que querés. Vas a formar parte de un espacio con presencia en cada departamento.
             </p>
             <ul className="space-y-3 mb-10">
@@ -658,7 +649,7 @@ export default function PRORioja() {
               <div className="border-l border-white/20 pl-3">
                 <div className="font-extrabold text-white">Fundación Pensar</div>
                 <div className="text-xs uppercase tracking-[0.2em] text-white/50">
-                  Pro La Rioja
+                  La Rioja
                 </div>
               </div>
             </div>
@@ -720,7 +711,7 @@ export default function PRORioja() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
-          <span>© {new Date().getFullYear()} Fundación Pensar Pro La Rioja. Todos los derechos reservados.</span>
+          <span>© {new Date().getFullYear()} Fundación Pensar La Rioja. Todos los derechos reservados.</span>
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
       </footer>

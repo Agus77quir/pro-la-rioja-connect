@@ -32,9 +32,9 @@ const faqs: { q: string; keywords: string[]; a: string }[] = [
     a: "¡Sí! Sumate como voluntario completando el formulario y marcando tu interés. Te contactamos desde el equipo territorial.",
   },
   {
-    q: "¿Qué es la Fundación Pensar Pro La Rioja?",
+    q: "¿Qué es la Fundación Pensar La Rioja?",
     keywords: ["quien", "equipo", "integr", "lider", "referent", "fundac", "pensar", "que es"],
-    a: "Somos la Fundación Pensar Pro La Rioja: un espacio de pensamiento y acción política integrado por vecinos, profesionales y dirigentes comprometidos con la provincia. Más info en 'Quiénes somos'.",
+    a: "Somos la Fundación Pensar La Rioja: un espacio de pensamiento y acción política integrado por vecinos, profesionales y dirigentes comprometidos con la provincia. Más info en 'Quiénes somos'.",
   },
 ];
 
@@ -45,7 +45,7 @@ function findAnswer(input: string): string {
   const match = faqs.find((f) => f.keywords.some((k) => text.includes(k)));
   if (match) return match.a;
   if (/hola|buen[oa]s|saludos|hey/.test(text))
-    return "¡Hola! Soy el asistente de la Fundación Pensar Pro La Rioja. ¿En qué puedo ayudarte? Podés preguntarme por propuestas, cómo sumarte o contacto.";
+    return "¡Hola! Soy el asistente de la Fundación Pensar La Rioja. ¿En qué puedo ayudarte? Podés preguntarme por propuestas, cómo sumarte o contacto.";
   if (/gracias/.test(text)) return "¡Gracias a vos por escribirnos!";
   return "No tengo una respuesta exacta para eso. Probá con: propuestas, sumarme, contacto, noticias o voluntariado. También podés escribirnos a contacto@fundacionpensarlarioja.ar.";
 }
@@ -56,7 +56,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "bot",
-      text: "¡Hola! 👋 Soy el asistente virtual de la Fundación Pensar Pro La Rioja. ¿En qué puedo ayudarte hoy?",
+      text: "¡Hola! 👋 Soy el asistente virtual de la Fundación Pensar La Rioja. ¿En qué puedo ayudarte hoy?",
     },
   ]);
   const endRef = useRef<HTMLDivElement>(null);
@@ -88,7 +88,7 @@ export default function Chatbot() {
       {open && (
         <div className="fixed bottom-24 right-5 z-50 w-[92vw] max-w-sm rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-primary text-primary-foreground px-4 py-3">
-            <div className="font-semibold">Asistente Fundación Pensar Pro La Rioja</div>
+            <div className="font-semibold">Asistente Fundación Pensar La Rioja</div>
             <div className="text-xs opacity-80">Respuestas a preguntas frecuentes</div>
           </div>
 
