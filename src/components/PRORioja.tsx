@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/pensar-logo.svg.asset.json";
-const logo = logoAsset.url;
+import logo from "@/assets/pensar-logo.svg";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
