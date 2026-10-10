@@ -26,6 +26,9 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-on-dark: var(--brand-on-dark);
+  --color-brand-strong: var(--brand-strong);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -63,10 +66,13 @@
 
 :root {
   --radius: 0.25rem;
+  --brand-dark: oklch(0.18 0.006 80);
+  --brand-on-dark: oklch(0.99 0 0);
+  --brand-strong: oklch(0.46 0.095 70);
   --background: oklch(1 0 0);
   --foreground: oklch(0.15 0.01 80);
-  --pro-yellow: oklch(0.88 0.18 95);
-  --pro-yellow-deep: oklch(0.82 0.19 90);
+  --pro-yellow: oklch(0.88 0.14 94);
+  --pro-yellow-deep: oklch(0.78 0.14 63);
   --pro-ink: oklch(0.18 0.01 80);
   --gradient-yellow: linear-gradient(135deg, var(--pro-yellow), var(--pro-yellow-deep));
   --shadow-yellow: 0 20px 50px -20px color-mix(in oklab, var(--pro-yellow) 60%, transparent);
@@ -151,7 +157,7 @@
   }
 
   h1, h2, h3, h4 {
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     font-weight: 800;
   }
 }
@@ -207,4 +213,11 @@
     100% { transform: translateX(-50%); }
   }
   .marquee-track { animation: marquee 30s linear infinite; }
+}
+
+.brand-logo { object-fit: contain; border-radius: 4px; background: var(--background); }
+.brand-band { background: var(--gradient-yellow); }
+.brand-hero-art { border-bottom: 4px solid var(--primary); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

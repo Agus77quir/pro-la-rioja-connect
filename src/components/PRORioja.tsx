@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/pensar-logo.svg";
+import logoAsset from "@/assets/pro-logo-nuevo.jpg.asset.json";
+const logo = new URL(logoAsset.url, "https://id-preview--35abbf7c-dd0d-4eec-963c-42e8dddb4219.lovable.app").href;
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
@@ -132,13 +133,8 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
-/** PRO logo mark — yellow play triangle + "pro" wordmark, scalable SVG */
-function PROMark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 90 90" className={className} aria-label="" role="img">
-      <path d="M5 10 L5 80 L70 45 Z" fill="currentColor" />
-    </svg>
-  );
+function BrandLogo({ className = "" }: { className?: string }) {
+  return <img src={logo} alt="PRO" width={699} height={294} className={`brand-logo ${className}`} />;
 }
 
 function smoothScroll(id: string) {
@@ -200,30 +196,22 @@ export default function PRORioja() {
             className="flex items-center gap-2 sm:gap-3 group min-w-0"
             aria-label="Fundación Pensar La Rioja - Inicio"
           >
-            <img
-              src={logo}
-              alt="Fundación Pensar La Rioja"
-              width={140}
-              height={86}
-              className={`h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105 shrink-0 ${
-                scrolled ? "[filter:invert(1)_hue-rotate(180deg)]" : ""
-              }`}
-            />
+            <BrandLogo className="h-10 sm:h-12 lg:h-14 w-auto shrink-0" />
             <div
               className={`leading-tight border-l pl-3 hidden sm:block transition-colors ${
-                scrolled ? "border-border" : "border-white/30"
+                scrolled ? "border-border" : "border-brand-on-dark/30"
               }`}
             >
               <div
-                className={`font-extrabold tracking-tight text-sm transition-colors ${
-                  scrolled ? "text-foreground" : "text-white"
+                className={`font-extrabold tracking-normal text-sm transition-colors ${
+                  scrolled ? "text-foreground" : "text-brand-on-dark"
                 }`}
               >
                 Fundación Pensar
               </div>
               <div
                 className={`text-[10px] tracking-[0.2em] uppercase transition-colors ${
-                  scrolled ? "text-muted-foreground" : "text-white/70"
+                  scrolled ? "text-muted-foreground" : "text-brand-on-dark/70"
                 }`}
               >
                 La Rioja
@@ -244,8 +232,8 @@ export default function PRORioja() {
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"
                       : isActive
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
+                        ? "text-brand-on-dark"
+                        : "text-brand-on-dark/70 hover:text-brand-on-dark"
                   }`}
                 >
                   {l.label}
@@ -270,7 +258,7 @@ export default function PRORioja() {
 
           <button
             className={`lg:hidden p-2 transition-colors ${
-              scrolled ? "text-foreground" : "text-white"
+              scrolled ? "text-foreground" : "text-brand-on-dark"
             }`}
             onClick={() => setOpen(!open)}
             aria-label="Menú"
@@ -310,33 +298,11 @@ export default function PRORioja() {
       {/* HERO */}
       <section
         id="inicio"
-        className="relative min-h-screen flex items-center bg-[oklch(0.13_0.01_80)] text-white overflow-hidden"
+        className="relative min-h-[88svh] flex items-center bg-brand-dark text-brand-on-dark overflow-hidden"
       >
-        {/* Composición geométrica de fondo (sin personas, sin animación) */}
-        <div aria-hidden className="absolute inset-0 pointer-events-none">
-          {/* gradiente base */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.18_0.01_80)] via-[oklch(0.13_0.01_80)] to-[oklch(0.10_0.01_80)]" />
-          {/* Triángulo PRO marca de agua, suave y desplazado al borde */}
-          <svg
-            viewBox="0 0 100 100"
-            preserveAspectRatio="xMaxYMid slice"
-            className="absolute -right-[10%] top-0 h-full w-[60%] opacity-[0.08]"
-          >
-            <polygon points="20,90 90,55 20,20" fill="var(--pro-yellow)" />
-          </svg>
-          {/* Acento amarillo en esquina inferior derecha (fuera del área de texto/botones) */}
-          <svg
-            viewBox="0 0 100 100"
-            className="absolute -right-[5%] -bottom-[10%] h-[45%] aspect-square opacity-90 hidden lg:block"
-          >
-            <polygon points="20,88 88,52 20,16" fill="var(--pro-yellow)" />
-          </svg>
-          {/* Velo oscuro sobre la mitad izquierda para garantizar contraste del texto blanco */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.10_0.01_80)] via-[oklch(0.10_0.01_80)]/85 to-transparent" />
-          {/* Línea horizontal sutil */}
-          <div className="absolute left-0 right-0 top-1/2 h-px bg-white/5" />
+        <div aria-hidden className="absolute inset-0 pointer-events-none brand-hero-art">
+          <BrandLogo className="absolute right-8 bottom-10 w-48 sm:w-72 lg:w-96 opacity-15" />
         </div>
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 py-28 sm:py-32 lg:py-40 w-full">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-3 mb-6 sm:mb-8 reveal">
@@ -350,7 +316,7 @@ export default function PRORioja() {
               <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>empieza hoy.
             </h1>
-            <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed reveal">
+            <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-brand-on-dark/75 max-w-2xl leading-relaxed reveal">
               Somos el espacio que cree en el cambio, en las instituciones y en una provincia con
               futuro.
             </p>
@@ -364,7 +330,7 @@ export default function PRORioja() {
               <Button
                 onClick={() => go("propuestas")}
                 variant="outline"
-                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-foreground transition-all duration-300 w-full sm:w-auto justify-center"
+                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-brand-on-dark/10 backdrop-blur-sm border-2 border-brand-on-dark text-brand-on-dark hover:bg-brand-on-dark hover:text-foreground transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 Conocé nuestras propuestas
               </Button>
@@ -403,7 +369,7 @@ export default function PRORioja() {
               >
                 <div className="flex items-start justify-between mb-6 sm:mb-8">
                   <span className="text-4xl sm:text-5xl font-extrabold text-muted-foreground/30">{p.n}</span>
-                  <PROMark className="h-6 sm:h-7 w-auto text-primary transition-transform duration-500 group-hover:scale-110 group-hover:translate-x-1" />
+                  <BrandLogo className="h-6 sm:h-7 w-auto text-primary transition-transform duration-500 group-hover:scale-110 group-hover:translate-x-1" />
                 </div>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-3 sm:mb-4">{p.title}</h3>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{p.text}</p>
@@ -469,18 +435,8 @@ export default function PRORioja() {
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div className="relative reveal">
             <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary -z-10" />
-            <div className="bg-[oklch(0.13_0.01_80)] aspect-[4/3] flex items-center justify-center relative overflow-hidden p-10">
-              <img
-                src={logo}
-                alt="Fundación Pensar La Rioja"
-                className="relative z-10 w-2/3 max-w-xs h-auto drop-shadow-[0_8px_30px_rgba(247,172,0,0.35)]"
-              />
-              <svg
-                viewBox="0 0 100 100"
-                className="absolute right-[-10%] top-1/2 -translate-y-1/2 h-[120%] opacity-10"
-              >
-                <polygon points="20,88 88,52 20,16" fill="var(--pro-yellow)" />
-              </svg>
+            <div className="bg-secondary aspect-[4/3] flex items-center justify-center overflow-hidden p-8 sm:p-10">
+              <BrandLogo className="w-full max-w-md h-auto" />
             </div>
           </div>
 
@@ -507,7 +463,7 @@ export default function PRORioja() {
                 { n: "100%", l: "Compromiso" },
               ].map((s) => (
                 <div key={s.l}>
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary">{s.n}</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-strong">{s.n}</div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground mt-2">
                     {s.l}
                   </div>
@@ -521,24 +477,8 @@ export default function PRORioja() {
       {/* AFILIATE */}
       <section
         id="afiliate"
-        className="relative overflow-hidden bg-primary text-primary-foreground py-16 sm:py-24 lg:py-32 scroll-mt-20"
+        className="relative overflow-hidden brand-band text-primary-foreground py-16 sm:py-24 lg:py-32 scroll-mt-20"
       >
-        {/* Triángulos decorativos estáticos */}
-        <svg
-          viewBox="0 0 100 100"
-          aria-hidden
-          className="absolute -left-10 -top-10 w-80 h-80 opacity-15 pointer-events-none"
-        >
-          <polygon points="20,88 88,52 20,16" fill="var(--pro-ink)" />
-        </svg>
-        <svg
-          viewBox="0 0 100 100"
-          aria-hidden
-          className="absolute -right-16 -bottom-16 w-96 h-96 opacity-10 pointer-events-none"
-        >
-          <polygon points="20,88 88,52 20,16" fill="var(--pro-ink)" />
-        </svg>
-
         <div className="relative max-w-6xl mx-auto px-4 sm:px-5 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div className="reveal">
             <div className="inline-flex items-center gap-3 mb-5 sm:mb-6">
@@ -573,15 +513,15 @@ export default function PRORioja() {
       {/* CONTACTO / FOOTER */}
       <footer
         id="contacto"
-        className="bg-[oklch(0.11_0.01_80)] text-white/80 pt-14 sm:pt-20 pb-10 scroll-mt-20"
+        className="bg-brand-dark text-brand-on-dark/80 pt-14 sm:pt-20 pb-10 scroll-mt-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-14">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <img src={logo} alt="" width={140} height={86} className="h-14 w-auto" />
-              <div className="border-l border-white/20 pl-3">
-                <div className="font-extrabold text-white">Fundación Pensar</div>
-                <div className="text-xs uppercase tracking-[0.2em] text-white/50">
+              <BrandLogo className="h-12 sm:h-14 w-auto shrink-0" />
+              <div className="border-l border-brand-on-dark/20 pl-3">
+                <div className="font-extrabold text-brand-on-dark">Fundación Pensar</div>
+                <div className="text-xs uppercase tracking-[0.2em] text-brand-on-dark/50">
                   La Rioja
                 </div>
               </div>
@@ -600,7 +540,7 @@ export default function PRORioja() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                  className="w-10 h-10 border border-brand-on-dark/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
                 >
                   <I className="h-4 w-4" />
                 </a>
@@ -609,7 +549,7 @@ export default function PRORioja() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-widest">Menú</h4>
+            <h4 className="text-brand-on-dark font-bold mb-4 text-sm uppercase tracking-widest">Menú</h4>
             <ul className="space-y-2 text-sm">
               {navLinks.map((l) => (
                 <li key={l.id}>
@@ -625,7 +565,7 @@ export default function PRORioja() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-widest">
+            <h4 className="text-brand-on-dark font-bold mb-4 text-sm uppercase tracking-widest">
               Contacto
             </h4>
             <ul className="space-y-3 text-sm">
@@ -643,7 +583,7 @@ export default function PRORioja() {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-brand-on-dark/10 text-xs text-brand-on-dark/50 flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} Fundación Pensar La Rioja. Todos los derechos reservados.</span>
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
