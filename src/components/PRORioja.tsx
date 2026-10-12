@@ -201,16 +201,12 @@ export default function PRORioja() {
               className="leading-tight border-l border-border pl-3 hidden sm:block"
             >
               <div
-                className={`font-extrabold tracking-normal text-sm transition-colors ${
-                  text-foreground
-                }`}
+                className="font-extrabold tracking-normal text-sm transition-colors text-foreground"
               >
                 Fundación Pensar
               </div>
               <div
-                className={`text-[10px] tracking-[0.2em] uppercase transition-colors ${
-                  text-muted-foreground
-                }`}
+                className="text-[10px] tracking-[0.2em] uppercase transition-colors text-muted-foreground"
               >
                 La Rioja
               </div>
@@ -255,9 +251,7 @@ export default function PRORioja() {
           </div>
 
           <button
-            className={`lg:hidden p-2 transition-colors ${
-              text-foreground
-            }`}
+            className="lg:hidden p-2 transition-colors text-foreground"
             onClick={() => setOpen(!open)}
             aria-label="Menú"
           >
