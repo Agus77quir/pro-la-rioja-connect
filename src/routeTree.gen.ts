@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicDescargarHtmlRouteImport } from './routes/api/public/descargar-html'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicDescargarHtmlRoute = ApiPublicDescargarHtmlRouteImport.update({
+  id: '/api/public/descargar-html',
+  path: '/api/public/descargar-html',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/descargar-html': typeof ApiPublicDescargarHtmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/descargar-html': typeof ApiPublicDescargarHtmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/descargar-html': typeof ApiPublicDescargarHtmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/descargar-html'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/descargar-html'
+  id: '__root__' | '/' | '/api/public/descargar-html'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicDescargarHtmlRoute: typeof ApiPublicDescargarHtmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/descargar-html': {
+      id: '/api/public/descargar-html'
+      path: '/api/public/descargar-html'
+      fullPath: '/api/public/descargar-html'
+      preLoaderRoute: typeof ApiPublicDescargarHtmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicDescargarHtmlRoute: ApiPublicDescargarHtmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
