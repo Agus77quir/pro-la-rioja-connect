@@ -575,7 +575,7 @@ export default function PRORioja() {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-border text-xs text-muted-foreground flex flex-wrap justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 pb-2 border-t border-border text-xs text-muted-foreground flex flex-wrap justify-between gap-2 pr-28 sm:pr-32">
           <span>© {new Date().getFullYear()} Fundación Pensar La Rioja. Todos los derechos reservados.</span>
           <a href="/api/public/descargar-html" className="underline underline-offset-4 hover:text-foreground">Descargar esta página (HTML)</a>
         </div>
