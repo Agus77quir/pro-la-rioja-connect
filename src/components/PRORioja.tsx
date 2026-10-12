@@ -198,20 +198,18 @@ export default function PRORioja() {
           >
             <BrandLogo className="h-10 sm:h-12 lg:h-14 w-auto shrink-0" />
             <div
-              className={`leading-tight border-l pl-3 hidden sm:block transition-colors ${
-                scrolled ? "border-border" : "border-brand-on-dark/30"
-              }`}
+              className="leading-tight border-l border-border pl-3 hidden sm:block"
             >
               <div
                 className={`font-extrabold tracking-normal text-sm transition-colors ${
-                  scrolled ? "text-foreground" : "text-brand-on-dark"
+                  text-foreground
                 }`}
               >
                 Fundación Pensar
               </div>
               <div
                 className={`text-[10px] tracking-[0.2em] uppercase transition-colors ${
-                  scrolled ? "text-muted-foreground" : "text-brand-on-dark/70"
+                  text-muted-foreground
                 }`}
               >
                 La Rioja
@@ -232,8 +230,8 @@ export default function PRORioja() {
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"
                       : isActive
-                        ? "text-brand-on-dark"
-                        : "text-brand-on-dark/70 hover:text-brand-on-dark"
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {l.label}
@@ -258,7 +256,7 @@ export default function PRORioja() {
 
           <button
             className={`lg:hidden p-2 transition-colors ${
-              scrolled ? "text-foreground" : "text-brand-on-dark"
+              text-foreground
             }`}
             onClick={() => setOpen(!open)}
             aria-label="Menú"
@@ -298,7 +296,7 @@ export default function PRORioja() {
       {/* HERO */}
       <section
         id="inicio"
-        className="relative min-h-[88svh] flex items-center bg-brand-dark text-brand-on-dark overflow-hidden"
+        className="relative min-h-[88svh] flex items-center bg-background text-foreground overflow-hidden"
       >
         <div aria-hidden className="absolute inset-0 pointer-events-none brand-hero-art">
           <BrandLogo className="absolute right-8 bottom-10 w-48 sm:w-72 lg:w-96 opacity-15" />
@@ -316,7 +314,7 @@ export default function PRORioja() {
               <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>empieza hoy.
             </h1>
-            <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-brand-on-dark/75 max-w-2xl leading-relaxed reveal">
+            <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed reveal">
               Somos el espacio que cree en el cambio, en las instituciones y en una provincia con
               futuro.
             </p>
@@ -330,7 +328,7 @@ export default function PRORioja() {
               <Button
                 onClick={() => go("propuestas")}
                 variant="outline"
-                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-brand-on-dark/10 backdrop-blur-sm border-2 border-brand-on-dark text-brand-on-dark hover:bg-brand-on-dark hover:text-foreground transition-all duration-300 w-full sm:w-auto justify-center"
+                className="rounded-none h-12 sm:h-14 px-6 sm:px-8 font-bold text-sm sm:text-base bg-background/70 border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 Conocé nuestras propuestas
               </Button>
@@ -513,15 +511,15 @@ export default function PRORioja() {
       {/* CONTACTO / FOOTER */}
       <footer
         id="contacto"
-        className="bg-brand-dark text-brand-on-dark/80 pt-14 sm:pt-20 pb-10 scroll-mt-20"
+        className="bg-background border-t border-border text-foreground/80 pt-14 sm:pt-20 pb-10 scroll-mt-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-14">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
               <BrandLogo className="h-12 sm:h-14 w-auto shrink-0" />
-              <div className="border-l border-brand-on-dark/20 pl-3">
-                <div className="font-extrabold text-brand-on-dark">Fundación Pensar</div>
-                <div className="text-xs uppercase tracking-[0.2em] text-brand-on-dark/50">
+              <div className="border-l border-border pl-3">
+                <div className="font-extrabold text-foreground">Fundación Pensar</div>
+                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   La Rioja
                 </div>
               </div>
@@ -540,7 +538,7 @@ export default function PRORioja() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-10 h-10 border border-brand-on-dark/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                  className="w-10 h-10 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
                 >
                   <I className="h-4 w-4" />
                 </a>
@@ -549,7 +547,7 @@ export default function PRORioja() {
           </div>
 
           <div>
-            <h4 className="text-brand-on-dark font-bold mb-4 text-sm uppercase tracking-widest">Menú</h4>
+            <h4 className="text-foreground font-bold mb-4 text-sm uppercase tracking-widest">Menú</h4>
             <ul className="space-y-2 text-sm">
               {navLinks.map((l) => (
                 <li key={l.id}>
@@ -565,7 +563,7 @@ export default function PRORioja() {
           </div>
 
           <div>
-            <h4 className="text-brand-on-dark font-bold mb-4 text-sm uppercase tracking-widest">
+            <h4 className="text-foreground font-bold mb-4 text-sm uppercase tracking-widest">
               Contacto
             </h4>
             <ul className="space-y-3 text-sm">
@@ -583,7 +581,7 @@ export default function PRORioja() {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-brand-on-dark/10 text-xs text-brand-on-dark/50 flex flex-wrap justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pt-6 border-t border-border text-xs text-muted-foreground flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} Fundación Pensar La Rioja. Todos los derechos reservados.</span>
           <span>Hecho con compromiso por La Rioja.</span>
         </div>
