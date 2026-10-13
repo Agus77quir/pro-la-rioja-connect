@@ -8,7 +8,7 @@ type Msg = { role: "bot" | "user"; text: string };
 const faqs: { q: string; keywords: string[]; a: string }[] = [
   {
     q: "¿Cómo me sumo al PRO?",
-    keywords: ["afili", "sumar", "unir", "membres", "particip"],
+    keywords: ["afili", "sum", "unir", "membres", "particip"],
     a: "Conocé las formas de participar en la sección 'Afiliate' y consultá al equipo por los requisitos para afiliarte al PRO La Rioja.",
   },
   {
