@@ -197,20 +197,6 @@ export default function PRORioja() {
             aria-label="PRO La Rioja - Inicio"
           >
             <BrandLogo className="h-10 sm:h-12 lg:h-14 w-auto shrink-0" />
-            <div
-              className="leading-tight border-l border-border pl-3 hidden sm:block"
-            >
-              <div
-                className="font-extrabold tracking-normal text-sm transition-colors text-foreground"
-              >
-                PRO
-              </div>
-              <div
-                className="text-[10px] tracking-[0.2em] uppercase transition-colors text-muted-foreground"
-              >
-                La Rioja
-              </div>
-            </div>
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -509,12 +495,6 @@ export default function PRORioja() {
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
               <BrandLogo className="h-12 sm:h-14 w-auto shrink-0" />
-              <div className="border-l border-border pl-3">
-                <div className="font-extrabold text-foreground">PRO</div>
-                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  La Rioja
-                </div>
-              </div>
             </div>
             <p className="max-w-md text-sm leading-relaxed mb-6">
               Trabajamos por una provincia con instituciones fuertes, oportunidades reales y futuro
