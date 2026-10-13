@@ -65,14 +65,43 @@ export default function Chatbot() {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
 
-  const send = (text: string) => {
+  const [loading, setLoading] = useState(false);
+  const send = async (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed) return;
-    setMessages((m) => [...m, { role: "user", text: trimmed }]);
+    if (!trimmed || loading) return;
+    const history = [...messages, { role: "user" as const, text: trimmed }];
+    setMessages([...history, { role: "bot", text: "" }]);
     setInput("");
-    setTimeout(() => {
-      setMessages((m) => [...m, { role: "bot", text: findAnswer(trimmed) }]);
-    }, 350);
+    setLoading(true);
+    const update = (t: string) =>
+      setMessages((m) => [...m.slice(0, -1), { role: "bot", text: t }]);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: history.slice(1).map((m) => ({
+            role: m.role === "user" ? "user" : "assistant",
+            content: m.text,
+          })),
+        }),
+      });
+      if (!res.ok || !res.body) throw new Error(await res.text());
+      const reader = res.body.getReader();
+      const dec = new TextDecoder();
+      let acc = "";
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        acc += dec.decode(value, { stream: true });
+        update(acc);
+      }
+      if (!acc) update(findAnswer(trimmed));
+    } catch {
+      update(findAnswer(trimmed));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -89,7 +118,7 @@ export default function Chatbot() {
         <div className="fixed bottom-24 right-5 z-50 w-[92vw] max-w-sm rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-primary text-primary-foreground px-4 py-3">
             <div className="font-semibold">Asistente PRO La Rioja</div>
-            <div className="text-xs opacity-80">Respuestas a preguntas frecuentes</div>
+            <div className="text-xs opacity-80">Preguntá sobre propuestas y actividades</div>
           </div>
 
           <div className="flex-1 max-h-[55vh] overflow-y-auto p-3 space-y-2 bg-background">
@@ -105,7 +134,7 @@ export default function Chatbot() {
                       : "bg-muted text-foreground rounded-bl-sm"
                   }`}
                 >
-                  {m.text}
+                  {m.text || "Escribiendo…"}
                 </div>
               </div>
             ))}
@@ -137,7 +166,7 @@ export default function Chatbot() {
               placeholder="Escribí tu pregunta..."
               className="flex-1"
             />
-            <Button type="submit" size="icon" aria-label="Enviar">
+            <Button type="submit" disabled={loading} size="icon" aria-label="Enviar">
               <Send className="h-4 w-4" />
             </Button>
           </form>
